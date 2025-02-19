@@ -35,6 +35,20 @@ def load_data(filepath: str) -> List[Tuple[int, int]]:
         logging.error(f"Error parsing data: {e}")
         raise
 
+def calculate_total(data: List[Tuple[int, int]]) -> int:
+    """
+    Calculate the total sum of sales from the data.
+    
+    Args:
+        data: List of (day, sales) tuples
+        
+    Returns:
+        Total sales amount
+    """
+    total = sum(sales for _, sales in data)
+    logging.info(f"Total sales calculated: {total}")
+    return total
+
 def main():
     """Main entry point of the application."""
     logging.info("Logging is configured and main.py is running.")
@@ -43,6 +57,10 @@ def main():
     data = load_data("data.csv")
     logging.info("Data loading completed successfully.")
     logging.debug(f"Loaded data: {data}")
+    
+    # Calculate total sales
+    total_sales = calculate_total(data)
+    logging.info(f"Total sales: {total_sales}")
 
 if __name__ == "__main__":
     main() 
